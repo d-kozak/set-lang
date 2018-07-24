@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.function.Consumer;
 
-public class SetWalker extends SetBaseListener {
+public class ModelBuildingWalker extends SetBaseListener {
 
     private final Consumer<String> log;
 
@@ -15,7 +15,7 @@ public class SetWalker extends SetBaseListener {
 
     private InnerMySet currentSet;
 
-    public SetWalker(Consumer<String> log) {
+    public ModelBuildingWalker(Consumer<String> log) {
         this.log = log;
     }
 

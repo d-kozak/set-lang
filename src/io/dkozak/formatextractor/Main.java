@@ -23,14 +23,16 @@ public class Main {
         SetLexer lexer = new SetLexer(new ANTLRInputStream(input));
         CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
         SetParser parser = new SetParser(commonTokenStream);
-        ParseTree elem = parser.set();
+        ParseTree ast = parser.set();
 
         Consumer<String> simpleLog = System.out::println;
 
         ParseTreeWalker walker = new ParseTreeWalker();
-        SetWalker listener = new SetWalker(simpleLog);
-        walker.walk(listener, elem);
+        ModelBuildingWalker listener = new ModelBuildingWalker(simpleLog);
+        walker.walk(listener, ast);
 
-        simpleLog.accept("Result is " + listener.getSet());
+        simpleLog.accept("Parsed model is " + listener.getSet());
+
+        System.out.println("Output:\n" + SetToStringConvertor.convert(listener.getSet()));
     }
 }
