@@ -1,4 +1,4 @@
-#Set language
+# Set language
 
 A very simple example of antlr4 languagu application that can parse files containing sets. Example input files can be seen in _./input_ folder.
 
