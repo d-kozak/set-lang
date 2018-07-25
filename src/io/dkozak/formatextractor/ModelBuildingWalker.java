@@ -19,8 +19,28 @@ public class ModelBuildingWalker extends SetBaseListener {
         this.log = log;
     }
 
+
     @Override
-    public void enterSet(SetParser.SetContext ctx) {
+    public void enterEmptySet(SetParser.EmptySetContext ctx) {
+        enterSet();
+    }
+
+    @Override
+    public void enterNonEmptySet(SetParser.NonEmptySetContext ctx) {
+        enterSet();
+    }
+
+    @Override
+    public void exitEmptySet(SetParser.EmptySetContext ctx) {
+        exitSet();
+    }
+
+    @Override
+    public void exitNonEmptySet(SetParser.NonEmptySetContext ctx) {
+        exitSet();
+    }
+
+    private void enterSet() {
         log.accept("adding set");
         InnerMySet innerSetElement = new InnerMySet();
         if (currentSet != null) {
@@ -30,8 +50,8 @@ public class ModelBuildingWalker extends SetBaseListener {
         setStack.addLast(innerSetElement);
     }
 
-    @Override
-    public void exitSet(SetParser.SetContext ctx) {
+
+    private void exitSet() {
         currentSet = setStack.removeLast();
     }
 

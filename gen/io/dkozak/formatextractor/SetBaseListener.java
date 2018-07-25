@@ -17,7 +17,7 @@ public class SetBaseListener implements SetListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void enterSet(SetParser.SetContext ctx) {
+    public void enterEmptySet(SetParser.EmptySetContext ctx) {
     }
 
     /**
@@ -26,7 +26,25 @@ public class SetBaseListener implements SetListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
-    public void exitSet(SetParser.SetContext ctx) {
+    public void exitEmptySet(SetParser.EmptySetContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void enterNonEmptySet(SetParser.NonEmptySetContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void exitNonEmptySet(SetParser.NonEmptySetContext ctx) {
     }
 
     /**

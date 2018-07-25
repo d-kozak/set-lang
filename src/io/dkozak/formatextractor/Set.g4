@@ -1,8 +1,8 @@
 grammar Set;
 
 set
-    : '{}'
-    | '{' elem (',' elem)* '}'
+    : '{' '}' # emptySet
+    | '{' elem (',' elem)* '}' # nonEmptySet
     ;
 
 elem

@@ -1,6 +1,5 @@
 // Generated from /home/dkozak/IdeaProjects/FormatExtractor/src/io/dkozak/formatextractor/Set.g4 by ANTLR 4.7
 package io.dkozak.formatextractor;
-
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -9,7 +8,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * of the available methods.
  *
  * @param <T> The return type of the visit operation. Use {@link Void} for
- *            operations with no return type.
+ * operations with no return type.
  */
 public class SetBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements SetVisitor<T> {
     /**
@@ -19,7 +18,18 @@ public class SetBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements Se
      * {@link #visitChildren} on {@code ctx}.</p>
      */
     @Override
-    public T visitSet(SetParser.SetContext ctx) {
+    public T visitEmptySet(SetParser.EmptySetContext ctx) {
+        return visitChildren(ctx);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation returns the result of calling
+     * {@link #visitChildren} on {@code ctx}.</p>
+     */
+    @Override
+    public T visitNonEmptySet(SetParser.NonEmptySetContext ctx) {
         return visitChildren(ctx);
     }
 

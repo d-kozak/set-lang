@@ -11,9 +11,9 @@ import org.antlr.v4.runtime.dfa.DFA;
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class SetLexer extends Lexer {
     public static final int
-            T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, ELEM = 5, WS = 6;
+            T__0 = 1, T__1 = 2, T__2 = 3, ELEM = 4, WS = 5;
     public static final String[] ruleNames = {
-            "T__0", "T__1", "T__2", "T__3", "ELEM", "WS"
+            "T__0", "T__1", "T__2", "ELEM", "WS"
     };
     /**
      * @deprecated Use {@link #VOCABULARY} instead.
@@ -21,27 +21,26 @@ public class SetLexer extends Lexer {
     @Deprecated
     public static final String[] tokenNames;
     public static final String _serializedATN =
-            "\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\b$\b\1\4\2\t\2\4" +
-                    "\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\3\2\3\2\3\2\3\3\3\3\3\4\3\4\3\5" +
-                    "\3\5\3\6\6\6\32\n\6\r\6\16\6\33\3\7\6\7\37\n\7\r\7\16\7 \3\7\3\7\2\2\b" +
-                    "\3\3\5\4\7\5\t\6\13\7\r\b\3\2\4\6\2\62;C\\aac|\5\2\13\f\17\17\"\"\2%\2" +
-                    "\3\3\2\2\2\2\5\3\2\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\2\r\3\2\2" +
-                    "\2\3\17\3\2\2\2\5\22\3\2\2\2\7\24\3\2\2\2\t\26\3\2\2\2\13\31\3\2\2\2\r" +
-                    "\36\3\2\2\2\17\20\7}\2\2\20\21\7\177\2\2\21\4\3\2\2\2\22\23\7}\2\2\23" +
-                    "\6\3\2\2\2\24\25\7.\2\2\25\b\3\2\2\2\26\27\7\177\2\2\27\n\3\2\2\2\30\32" +
-                    "\t\2\2\2\31\30\3\2\2\2\32\33\3\2\2\2\33\31\3\2\2\2\33\34\3\2\2\2\34\f" +
-                    "\3\2\2\2\35\37\t\3\2\2\36\35\3\2\2\2\37 \3\2\2\2 \36\3\2\2\2 !\3\2\2\2" +
-                    "!\"\3\2\2\2\"#\b\7\2\2#\16\3\2\2\2\5\2\33 \3\b\2\2";
+            "\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\2\7\37\b\1\4\2\t\2" +
+                    "\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\3\2\3\2\3\3\3\3\3\4\3\4\3\5\6\5\25\n" +
+                    "\5\r\5\16\5\26\3\6\6\6\32\n\6\r\6\16\6\33\3\6\3\6\2\2\7\3\3\5\4\7\5\t" +
+                    "\6\13\7\3\2\4\6\2\62;C\\aac|\5\2\13\f\17\17\"\"\2 \2\3\3\2\2\2\2\5\3\2" +
+                    "\2\2\2\7\3\2\2\2\2\t\3\2\2\2\2\13\3\2\2\2\3\r\3\2\2\2\5\17\3\2\2\2\7\21" +
+                    "\3\2\2\2\t\24\3\2\2\2\13\31\3\2\2\2\r\16\7}\2\2\16\4\3\2\2\2\17\20\7\177" +
+                    "\2\2\20\6\3\2\2\2\21\22\7.\2\2\22\b\3\2\2\2\23\25\t\2\2\2\24\23\3\2\2" +
+                    "\2\25\26\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2\2\27\n\3\2\2\2\30\32\t\3\2" +
+                    "\2\31\30\3\2\2\2\32\33\3\2\2\2\33\31\3\2\2\2\33\34\3\2\2\2\34\35\3\2\2" +
+                    "\2\35\36\b\6\2\2\36\f\3\2\2\2\5\2\26\33\3\b\2\2";
     public static final ATN _ATN =
             new ATNDeserializer().deserialize(_serializedATN.toCharArray());
     protected static final DFA[] _decisionToDFA;
     protected static final PredictionContextCache _sharedContextCache =
             new PredictionContextCache();
     private static final String[] _LITERAL_NAMES = {
-            null, "'{}'", "'{'", "','", "'}'"
+            null, "'{'", "'}'", "','"
     };
     private static final String[] _SYMBOLIC_NAMES = {
-            null, null, null, null, null, "ELEM", "WS"
+            null, null, null, null, "ELEM", "WS"
     };
     public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
     public static String[] channelNames = {

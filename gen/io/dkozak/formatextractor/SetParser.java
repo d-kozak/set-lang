@@ -16,7 +16,7 @@ import java.util.List;
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class SetParser extends Parser {
     public static final int
-            T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, ELEM = 5, WS = 6;
+            T__0 = 1, T__1 = 2, T__2 = 3, ELEM = 4, WS = 5;
     public static final int
             RULE_set = 0, RULE_elem = 1, RULE_simpleElement = 2;
     public static final String[] ruleNames = {
@@ -28,24 +28,25 @@ public class SetParser extends Parser {
     @Deprecated
     public static final String[] tokenNames;
     public static final String _serializedATN =
-            "\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\b\35\4\2\t\2\4\3" +
-                    "\t\3\4\4\t\4\3\2\3\2\3\2\3\2\3\2\7\2\16\n\2\f\2\16\2\21\13\2\3\2\3\2\5" +
-                    "\2\25\n\2\3\3\3\3\5\3\31\n\3\3\4\3\4\3\4\2\2\5\2\4\6\2\2\2\34\2\24\3\2" +
-                    "\2\2\4\30\3\2\2\2\6\32\3\2\2\2\b\25\7\3\2\2\t\n\7\4\2\2\n\17\5\4\3\2\13" +
-                    "\f\7\5\2\2\f\16\5\4\3\2\r\13\3\2\2\2\16\21\3\2\2\2\17\r\3\2\2\2\17\20" +
-                    "\3\2\2\2\20\22\3\2\2\2\21\17\3\2\2\2\22\23\7\6\2\2\23\25\3\2\2\2\24\b" +
-                    "\3\2\2\2\24\t\3\2\2\2\25\3\3\2\2\2\26\31\5\6\4\2\27\31\5\2\2\2\30\26\3" +
-                    "\2\2\2\30\27\3\2\2\2\31\5\3\2\2\2\32\33\7\7\2\2\33\7\3\2\2\2\5\17\24\30";
+            "\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7\36\4\2\t\2\4\3" +
+                    "\t\3\4\4\t\4\3\2\3\2\3\2\3\2\3\2\3\2\7\2\17\n\2\f\2\16\2\22\13\2\3\2\3" +
+                    "\2\5\2\26\n\2\3\3\3\3\5\3\32\n\3\3\4\3\4\3\4\2\2\5\2\4\6\2\2\2\35\2\25" +
+                    "\3\2\2\2\4\31\3\2\2\2\6\33\3\2\2\2\b\t\7\3\2\2\t\26\7\4\2\2\n\13\7\3\2" +
+                    "\2\13\20\5\4\3\2\f\r\7\5\2\2\r\17\5\4\3\2\16\f\3\2\2\2\17\22\3\2\2\2\20" +
+                    "\16\3\2\2\2\20\21\3\2\2\2\21\23\3\2\2\2\22\20\3\2\2\2\23\24\7\4\2\2\24" +
+                    "\26\3\2\2\2\25\b\3\2\2\2\25\n\3\2\2\2\26\3\3\2\2\2\27\32\5\6\4\2\30\32" +
+                    "\5\2\2\2\31\27\3\2\2\2\31\30\3\2\2\2\32\5\3\2\2\2\33\34\7\6\2\2\34\7\3" +
+                    "\2\2\2\5\20\25\31";
     public static final ATN _ATN =
             new ATNDeserializer().deserialize(_serializedATN.toCharArray());
     protected static final DFA[] _decisionToDFA;
     protected static final PredictionContextCache _sharedContextCache =
             new PredictionContextCache();
     private static final String[] _LITERAL_NAMES = {
-            null, "'{}'", "'{'", "','", "'}'"
+            null, "'{'", "'}'", "','"
     };
     private static final String[] _SYMBOLIC_NAMES = {
-            null, null, null, null, null, "ELEM", "WS"
+            null, null, null, null, "ELEM", "WS"
     };
     public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -116,45 +117,47 @@ public class SetParser extends Parser {
         enterRule(_localctx, 0, RULE_set);
         int _la;
         try {
-            setState(18);
+            setState(19);
             _errHandler.sync(this);
-            switch (_input.LA(1)) {
-                case T__0:
+            switch (getInterpreter().adaptivePredict(_input, 1, _ctx)) {
+                case 1:
+                    _localctx = new EmptySetContext(_localctx);
                     enterOuterAlt(_localctx, 1);
                 {
                     setState(6);
                     match(T__0);
-                }
-                break;
-                case T__1:
-                    enterOuterAlt(_localctx, 2);
-                {
                     setState(7);
                     match(T__1);
+                }
+                break;
+                case 2:
+                    _localctx = new NonEmptySetContext(_localctx);
+                    enterOuterAlt(_localctx, 2);
+                {
                     setState(8);
+                    match(T__0);
+                    setState(9);
                     elem();
-                    setState(13);
+                    setState(14);
                     _errHandler.sync(this);
                     _la = _input.LA(1);
                     while (_la == T__2) {
                         {
                             {
-                                setState(9);
-                                match(T__2);
                                 setState(10);
+                                match(T__2);
+                                setState(11);
                                 elem();
                             }
                         }
-                        setState(15);
+                        setState(16);
                         _errHandler.sync(this);
                         _la = _input.LA(1);
                     }
-                    setState(16);
-                    match(T__3);
+                    setState(17);
+                    match(T__1);
                 }
                 break;
-                default:
-                    throw new NoViableAltException(this);
             }
         } catch (RecognitionException re) {
             _localctx.exception = re;
@@ -170,21 +173,20 @@ public class SetParser extends Parser {
         ElemContext _localctx = new ElemContext(_ctx, getState());
         enterRule(_localctx, 2, RULE_elem);
         try {
-            setState(22);
+            setState(23);
             _errHandler.sync(this);
             switch (_input.LA(1)) {
                 case ELEM:
                     enterOuterAlt(_localctx, 1);
                 {
-                    setState(20);
+                    setState(21);
                     simpleElement();
                 }
                 break;
                 case T__0:
-                case T__1:
                     enterOuterAlt(_localctx, 2);
                 {
-                    setState(21);
+                    setState(22);
                     set();
                 }
                 break;
@@ -207,7 +209,7 @@ public class SetParser extends Parser {
         try {
             enterOuterAlt(_localctx, 1);
             {
-                setState(24);
+                setState(25);
                 match(ELEM);
             }
         } catch (RecognitionException re) {
@@ -225,6 +227,46 @@ public class SetParser extends Parser {
             super(parent, invokingState);
         }
 
+        public SetContext() {
+        }
+
+        @Override
+        public int getRuleIndex() {
+            return RULE_set;
+        }
+
+        public void copyFrom(SetContext ctx) {
+            super.copyFrom(ctx);
+        }
+    }
+
+    public static class EmptySetContext extends SetContext {
+        public EmptySetContext(SetContext ctx) {
+            copyFrom(ctx);
+        }
+
+        @Override
+        public void enterRule(ParseTreeListener listener) {
+            if (listener instanceof SetListener) ((SetListener) listener).enterEmptySet(this);
+        }
+
+        @Override
+        public void exitRule(ParseTreeListener listener) {
+            if (listener instanceof SetListener) ((SetListener) listener).exitEmptySet(this);
+        }
+
+        @Override
+        public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+            if (visitor instanceof SetVisitor) return ((SetVisitor<? extends T>) visitor).visitEmptySet(this);
+            else return visitor.visitChildren(this);
+        }
+    }
+
+    public static class NonEmptySetContext extends SetContext {
+        public NonEmptySetContext(SetContext ctx) {
+            copyFrom(ctx);
+        }
+
         public List<ElemContext> elem() {
             return getRuleContexts(ElemContext.class);
         }
@@ -234,23 +276,18 @@ public class SetParser extends Parser {
         }
 
         @Override
-        public int getRuleIndex() {
-            return RULE_set;
-        }
-
-        @Override
         public void enterRule(ParseTreeListener listener) {
-            if (listener instanceof SetListener) ((SetListener) listener).enterSet(this);
+            if (listener instanceof SetListener) ((SetListener) listener).enterNonEmptySet(this);
         }
 
         @Override
         public void exitRule(ParseTreeListener listener) {
-            if (listener instanceof SetListener) ((SetListener) listener).exitSet(this);
+            if (listener instanceof SetListener) ((SetListener) listener).exitNonEmptySet(this);
         }
 
         @Override
         public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-            if (visitor instanceof SetVisitor) return ((SetVisitor<? extends T>) visitor).visitSet(this);
+            if (visitor instanceof SetVisitor) return ((SetVisitor<? extends T>) visitor).visitNonEmptySet(this);
             else return visitor.visitChildren(this);
         }
     }
