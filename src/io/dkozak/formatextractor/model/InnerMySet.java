@@ -1,12 +1,12 @@
 package io.dkozak.formatextractor.model;
 
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public final class InnerMySet implements MySet {
 
-    private final Set<MySet> elements = new HashSet<>();
+    private final Set<MySet> elements = new LinkedHashSet<>();
 
     public void addElement(MySet element) {
         elements.add(element);
@@ -19,5 +19,9 @@ public final class InnerMySet implements MySet {
 
     public Set<MySet> getElements() {
         return Collections.unmodifiableSet(elements);
+    }
+
+    public int size() {
+        return elements.size();
     }
 }

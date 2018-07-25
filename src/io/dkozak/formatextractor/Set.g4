@@ -1,5 +1,7 @@
 grammar Set;
 
+compilationUnit : set EOF ;
+
 set
     : '{' '}' # emptySet
     | '{' elem (',' elem)* '}' # nonEmptySet

@@ -8,6 +8,20 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface SetListener extends ParseTreeListener {
     /**
+     * Enter a parse tree produced by {@link SetParser#compilationUnit}.
+     *
+     * @param ctx the parse tree
+     */
+    void enterCompilationUnit(SetParser.CompilationUnitContext ctx);
+
+    /**
+     * Exit a parse tree produced by {@link SetParser#compilationUnit}.
+     *
+     * @param ctx the parse tree
+     */
+    void exitCompilationUnit(SetParser.CompilationUnitContext ctx);
+
+    /**
      * Enter a parse tree produced by the {@code emptySet}
      * labeled alternative in {@link SetParser#set}.
      *

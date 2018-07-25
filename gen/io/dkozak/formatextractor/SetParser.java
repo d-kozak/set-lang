@@ -18,9 +18,9 @@ public class SetParser extends Parser {
     public static final int
             T__0 = 1, T__1 = 2, T__2 = 3, ELEM = 4, WS = 5;
     public static final int
-            RULE_set = 0, RULE_elem = 1, RULE_simpleElement = 2;
+            RULE_compilationUnit = 0, RULE_set = 1, RULE_elem = 2, RULE_simpleElement = 3;
     public static final String[] ruleNames = {
-            "set", "elem", "simpleElement"
+            "compilationUnit", "set", "elem", "simpleElement"
     };
     /**
      * @deprecated Use {@link #VOCABULARY} instead.
@@ -28,15 +28,16 @@ public class SetParser extends Parser {
     @Deprecated
     public static final String[] tokenNames;
     public static final String _serializedATN =
-            "\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7\36\4\2\t\2\4\3" +
-                    "\t\3\4\4\t\4\3\2\3\2\3\2\3\2\3\2\3\2\7\2\17\n\2\f\2\16\2\22\13\2\3\2\3" +
-                    "\2\5\2\26\n\2\3\3\3\3\5\3\32\n\3\3\4\3\4\3\4\2\2\5\2\4\6\2\2\2\35\2\25" +
-                    "\3\2\2\2\4\31\3\2\2\2\6\33\3\2\2\2\b\t\7\3\2\2\t\26\7\4\2\2\n\13\7\3\2" +
-                    "\2\13\20\5\4\3\2\f\r\7\5\2\2\r\17\5\4\3\2\16\f\3\2\2\2\17\22\3\2\2\2\20" +
-                    "\16\3\2\2\2\20\21\3\2\2\2\21\23\3\2\2\2\22\20\3\2\2\2\23\24\7\4\2\2\24" +
-                    "\26\3\2\2\2\25\b\3\2\2\2\25\n\3\2\2\2\26\3\3\2\2\2\27\32\5\6\4\2\30\32" +
-                    "\5\2\2\2\31\27\3\2\2\2\31\30\3\2\2\2\32\5\3\2\2\2\33\34\7\6\2\2\34\7\3" +
-                    "\2\2\2\5\20\25\31";
+            "\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\7#\4\2\t\2\4\3\t" +
+                    "\3\4\4\t\4\4\5\t\5\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\3\7\3\24\n\3\f\3" +
+                    "\16\3\27\13\3\3\3\3\3\5\3\33\n\3\3\4\3\4\5\4\37\n\4\3\5\3\5\3\5\2\2\6" +
+                    "\2\4\6\b\2\2\2!\2\n\3\2\2\2\4\32\3\2\2\2\6\36\3\2\2\2\b \3\2\2\2\n\13" +
+                    "\5\4\3\2\13\f\7\2\2\3\f\3\3\2\2\2\r\16\7\3\2\2\16\33\7\4\2\2\17\20\7\3" +
+                    "\2\2\20\25\5\6\4\2\21\22\7\5\2\2\22\24\5\6\4\2\23\21\3\2\2\2\24\27\3\2" +
+                    "\2\2\25\23\3\2\2\2\25\26\3\2\2\2\26\30\3\2\2\2\27\25\3\2\2\2\30\31\7\4" +
+                    "\2\2\31\33\3\2\2\2\32\r\3\2\2\2\32\17\3\2\2\2\33\5\3\2\2\2\34\37\5\b\5" +
+                    "\2\35\37\5\4\3\2\36\34\3\2\2\2\36\35\3\2\2\2\37\7\3\2\2\2 !\7\6\2\2!\t" +
+                    "\3\2\2\2\5\25\32\36";
     public static final ATN _ATN =
             new ATNDeserializer().deserialize(_serializedATN.toCharArray());
     protected static final DFA[] _decisionToDFA;
@@ -112,21 +113,42 @@ public class SetParser extends Parser {
         return _ATN;
     }
 
+    public final CompilationUnitContext compilationUnit() throws RecognitionException {
+        CompilationUnitContext _localctx = new CompilationUnitContext(_ctx, getState());
+        enterRule(_localctx, 0, RULE_compilationUnit);
+        try {
+            enterOuterAlt(_localctx, 1);
+            {
+                setState(8);
+                set();
+                setState(9);
+                match(EOF);
+            }
+        } catch (RecognitionException re) {
+            _localctx.exception = re;
+            _errHandler.reportError(this, re);
+            _errHandler.recover(this, re);
+        } finally {
+            exitRule();
+        }
+        return _localctx;
+    }
+
     public final SetContext set() throws RecognitionException {
         SetContext _localctx = new SetContext(_ctx, getState());
-        enterRule(_localctx, 0, RULE_set);
+        enterRule(_localctx, 2, RULE_set);
         int _la;
         try {
-            setState(19);
+            setState(24);
             _errHandler.sync(this);
             switch (getInterpreter().adaptivePredict(_input, 1, _ctx)) {
                 case 1:
                     _localctx = new EmptySetContext(_localctx);
                     enterOuterAlt(_localctx, 1);
                 {
-                    setState(6);
+                    setState(11);
                     match(T__0);
-                    setState(7);
+                    setState(12);
                     match(T__1);
                 }
                 break;
@@ -134,27 +156,27 @@ public class SetParser extends Parser {
                     _localctx = new NonEmptySetContext(_localctx);
                     enterOuterAlt(_localctx, 2);
                 {
-                    setState(8);
+                    setState(13);
                     match(T__0);
-                    setState(9);
-                    elem();
                     setState(14);
+                    elem();
+                    setState(19);
                     _errHandler.sync(this);
                     _la = _input.LA(1);
                     while (_la == T__2) {
                         {
                             {
-                                setState(10);
+                                setState(15);
                                 match(T__2);
-                                setState(11);
+                                setState(16);
                                 elem();
                             }
                         }
-                        setState(16);
+                        setState(21);
                         _errHandler.sync(this);
                         _la = _input.LA(1);
                     }
-                    setState(17);
+                    setState(22);
                     match(T__1);
                 }
                 break;
@@ -171,22 +193,22 @@ public class SetParser extends Parser {
 
     public final ElemContext elem() throws RecognitionException {
         ElemContext _localctx = new ElemContext(_ctx, getState());
-        enterRule(_localctx, 2, RULE_elem);
+        enterRule(_localctx, 4, RULE_elem);
         try {
-            setState(23);
+            setState(28);
             _errHandler.sync(this);
             switch (_input.LA(1)) {
                 case ELEM:
                     enterOuterAlt(_localctx, 1);
                 {
-                    setState(21);
+                    setState(26);
                     simpleElement();
                 }
                 break;
                 case T__0:
                     enterOuterAlt(_localctx, 2);
                 {
-                    setState(22);
+                    setState(27);
                     set();
                 }
                 break;
@@ -205,11 +227,11 @@ public class SetParser extends Parser {
 
     public final SimpleElementContext simpleElement() throws RecognitionException {
         SimpleElementContext _localctx = new SimpleElementContext(_ctx, getState());
-        enterRule(_localctx, 4, RULE_simpleElement);
+        enterRule(_localctx, 6, RULE_simpleElement);
         try {
             enterOuterAlt(_localctx, 1);
             {
-                setState(25);
+                setState(30);
                 match(ELEM);
             }
         } catch (RecognitionException re) {
@@ -220,6 +242,41 @@ public class SetParser extends Parser {
             exitRule();
         }
         return _localctx;
+    }
+
+    public static class CompilationUnitContext extends ParserRuleContext {
+        public CompilationUnitContext(ParserRuleContext parent, int invokingState) {
+            super(parent, invokingState);
+        }
+
+        public SetContext set() {
+            return getRuleContext(SetContext.class, 0);
+        }
+
+        public TerminalNode EOF() {
+            return getToken(SetParser.EOF, 0);
+        }
+
+        @Override
+        public int getRuleIndex() {
+            return RULE_compilationUnit;
+        }
+
+        @Override
+        public void enterRule(ParseTreeListener listener) {
+            if (listener instanceof SetListener) ((SetListener) listener).enterCompilationUnit(this);
+        }
+
+        @Override
+        public void exitRule(ParseTreeListener listener) {
+            if (listener instanceof SetListener) ((SetListener) listener).exitCompilationUnit(this);
+        }
+
+        @Override
+        public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+            if (visitor instanceof SetVisitor) return ((SetVisitor<? extends T>) visitor).visitCompilationUnit(this);
+            else return visitor.visitChildren(this);
+        }
     }
 
     public static class SetContext extends ParserRuleContext {

@@ -28,6 +28,9 @@ public class FormatMemorizingListener extends SetBaseListener {
         Token rightBracketNode = ((TerminalNodeImpl) ctx.children.get(1)).symbol;
 
         String context = ctx.toString(Arrays.asList(setParser.getRuleNames()));
+        context = context.substring(1, context.length() - 1)
+                         .replace("compilationUnit", "")
+                         .trim();
 
         int appendedNewlines = rightBracketNode.getLine() - leftBracketNode.getLine();
 
@@ -38,7 +41,12 @@ public class FormatMemorizingListener extends SetBaseListener {
     public void enterNonEmptySet(SetParser.NonEmptySetContext ctx) {
         //alternative: '{' elem (',' elem)* '}'
 
+        List<FormatInfo> infos = new ArrayList<>();
+
         String context = ctx.toString(Arrays.asList(setParser.getRuleNames()));
+        context = context.substring(1, context.length() - 1)
+                         .replace("compilationUnit", "")
+                         .trim();
 
         // first '{' and elem
         Token currentToken = ctx.start;
@@ -46,7 +54,6 @@ public class FormatMemorizingListener extends SetBaseListener {
         int appendNewLines = nextToken.getLine() - currentToken.getLine();
         int childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
                                                                                                                           .length());
-        List<FormatInfo> infos = new ArrayList<>();
         infos.add(new FormatInfo(appendNewLines, childrenIndentation));
 
         // then elem ','

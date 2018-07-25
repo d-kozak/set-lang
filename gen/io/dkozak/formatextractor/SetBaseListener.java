@@ -17,6 +17,24 @@ public class SetBaseListener implements SetListener {
      * <p>The default implementation does nothing.</p>
      */
     @Override
+    public void enterCompilationUnit(SetParser.CompilationUnitContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
+    public void exitCompilationUnit(SetParser.CompilationUnitContext ctx) {
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * <p>The default implementation does nothing.</p>
+     */
+    @Override
     public void enterEmptySet(SetParser.EmptySetContext ctx) {
     }
 

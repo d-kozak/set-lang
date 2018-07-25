@@ -28,7 +28,7 @@ public class Main {
         SetLexer lexer = new SetLexer(new ANTLRInputStream(input));
         CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
         SetParser parser = new SetParser(commonTokenStream);
-        ParseTree ast = parser.set();
+        ParseTree ast = parser.compilationUnit();
 
         Consumer<String> simpleLog = System.out::println;
 
@@ -41,11 +41,15 @@ public class Main {
         FormatMemorizingListener formatMemorizingListener = new FormatMemorizingListener(commonTokenStream, parser);
         walker.walk(formatMemorizingListener, ast);
 
-        System.out.println("Output:\n" + SetToStringConvertor.convert(listener.getSet()));
-
-
         Map<MapKey, List<FormatInfo>> formatInfo = formatMemorizingListener.getFormatInfo();
-
         System.out.println("ParsedFormatInfo " + formatInfo);
+
+
+        System.out.println("Input:\n====\n" + input + "====\n");
+        String output = SetToStringConvertor.convertToFormatted(listener.getSet(), formatInfo);
+        System.out.println("Output:\n====\n" + output + "====\n");
+
+
+
     }
 }

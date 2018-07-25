@@ -11,6 +11,14 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface SetVisitor<T> extends ParseTreeVisitor<T> {
     /**
+     * Visit a parse tree produced by {@link SetParser#compilationUnit}.
+     *
+     * @param ctx the parse tree
+     * @return the visitor result
+     */
+    T visitCompilationUnit(SetParser.CompilationUnitContext ctx);
+
+    /**
      * Visit a parse tree produced by the {@code emptySet}
      * labeled alternative in {@link SetParser#set}.
      *
