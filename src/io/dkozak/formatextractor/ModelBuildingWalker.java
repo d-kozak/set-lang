@@ -13,7 +13,7 @@ public class ModelBuildingWalker extends SetBaseListener {
 
     private Deque<InnerMySet> setStack = new ArrayDeque<>();
 
-    private InnerMySet currentSet;
+    private InnerMySet topLevelSet;
 
     public ModelBuildingWalker(Consumer<String> log) {
         this.log = log;
@@ -40,19 +40,23 @@ public class ModelBuildingWalker extends SetBaseListener {
         exitSet();
     }
 
+
     private void enterSet() {
         log.accept("adding set");
-        InnerMySet innerSetElement = new InnerMySet();
-        if (currentSet != null) {
-            currentSet.addElement(innerSetElement);
+        InnerMySet newSet = new InnerMySet();
+        if (setStack.size() == 0) {
+            setStack.addLast(newSet);
+            topLevelSet = newSet;
+        } else {
+            setStack.getLast()
+                    .addElement(newSet);
+            setStack.addLast(newSet);
         }
-        currentSet = innerSetElement;
-        setStack.addLast(innerSetElement);
     }
 
 
     private void exitSet() {
-        currentSet = setStack.removeLast();
+        setStack.removeLast();
     }
 
     @Override
@@ -60,11 +64,12 @@ public class ModelBuildingWalker extends SetBaseListener {
         String name = ctx.ELEM()
                          .getText();
         log.accept("adding elem " + name);
-        currentSet.addElement(new SetElement(name));
+        setStack.getLast()
+                .addElement(new SetElement(name));
     }
 
 
     public InnerMySet getSet() {
-        return currentSet;
+        return topLevelSet;
     }
 }

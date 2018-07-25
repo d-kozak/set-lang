@@ -54,6 +54,11 @@ public class FormatMemorizingListener extends SetBaseListener {
         int appendNewLines = nextToken.getLine() - currentToken.getLine();
         int childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
                                                                                                                           .length());
+        if (appendNewLines > 0) {
+            childrenIndentation += currentToken.getText()
+                                               .length();
+        }
+
         infos.add(new FormatInfo(appendNewLines, childrenIndentation));
 
         // then elem ','
@@ -62,6 +67,11 @@ public class FormatMemorizingListener extends SetBaseListener {
         appendNewLines = nextToken.getLine() - currentToken.getLine();
         childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
                                                                                                                       .length());
+        if (appendNewLines > 0) {
+            childrenIndentation += currentToken.getText()
+                                               .length();
+        }
+
         infos.add(new FormatInfo(appendNewLines, childrenIndentation));
 
         if (ctx.children.size() > 4) {
@@ -71,6 +81,11 @@ public class FormatMemorizingListener extends SetBaseListener {
             appendNewLines = nextToken.getLine() - currentToken.getLine();
             childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
                                                                                                                           .length());
+            if (appendNewLines > 0) {
+                childrenIndentation += currentToken.getText()
+                                                   .length();
+            }
+
             infos.add(new FormatInfo(appendNewLines, childrenIndentation));
         }
 
@@ -80,6 +95,11 @@ public class FormatMemorizingListener extends SetBaseListener {
         appendNewLines = nextToken.getLine() - currentToken.getLine();
         childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
                                                                                                                       .length());
+        if (appendNewLines > 0) {
+            childrenIndentation += currentToken.getText()
+                                               .length();
+        }
+
         infos.add(new FormatInfo(appendNewLines, childrenIndentation));
 
         formatInfoMap.put(new MapKey(context, "nonEmptySet"), infos);

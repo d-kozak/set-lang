@@ -25,12 +25,17 @@ public class Main {
         String input = Files.lines(Paths.get(args[0]))
                             .collect(joining("\n"));
 
+        String output = process(input, System.out::println);
+        System.out.println("Output:\n====\n" + output + "====\n");
+
+
+    }
+
+    public static String process(String input, Consumer<String> simpleLog) {
         SetLexer lexer = new SetLexer(new ANTLRInputStream(input));
         CommonTokenStream commonTokenStream = new CommonTokenStream(lexer);
         SetParser parser = new SetParser(commonTokenStream);
         ParseTree ast = parser.compilationUnit();
-
-        Consumer<String> simpleLog = System.out::println;
 
         ParseTreeWalker walker = new ParseTreeWalker();
         ModelBuildingWalker listener = new ModelBuildingWalker(simpleLog);
@@ -42,14 +47,10 @@ public class Main {
         walker.walk(formatMemorizingListener, ast);
 
         Map<MapKey, List<FormatInfo>> formatInfo = formatMemorizingListener.getFormatInfo();
-        System.out.println("ParsedFormatInfo " + formatInfo);
+        simpleLog.accept("ParsedFormatInfo " + formatInfo);
 
 
-        System.out.println("Input:\n====\n" + input + "====\n");
-        String output = SetToStringConvertor.convertToFormatted(listener.getSet(), formatInfo);
-        System.out.println("Output:\n====\n" + output + "====\n");
-
-
-
+        simpleLog.accept("Input:\n====\n" + input + "====\n");
+        return SetToStringConvertor.convertToFormatted(listener.getSet(), formatInfo);
     }
 }
