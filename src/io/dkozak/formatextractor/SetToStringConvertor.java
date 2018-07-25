@@ -27,19 +27,19 @@ public class SetToStringConvertor extends SetBaseListener {
     }
 
     public static String convertToFormatted(MySet mySet, Map<MapKey, List<FormatInfo>> formatInfo) {
-        return convertToFormatted("", mySet, formatInfo);
+        return convertToFormatted(new ArrayList<>(), mySet, formatInfo);
     }
 
-    private static String convertToFormatted(String context, MySet mySet, Map<MapKey, List<FormatInfo>> formatInfo) {
+    private static String convertToFormatted(List<String> context, MySet mySet, Map<MapKey, List<FormatInfo>> formatInfo) {
         if (mySet instanceof SetElement)
             return ((SetElement) mySet).getName();
         else if (mySet instanceof InnerMySet) {
             if (!context.isEmpty()) {
-                context += " elem";
+                context.add("elem");
             }
             InnerMySet set = (InnerMySet) mySet;
             if (set.size() == 0) {
-                context = (context + " set").trim();
+                context.add("set");
                 FormatInfo firstToSecondBracketRule = formatInfo.get(new MapKey(context, "emptySet"))
                                                                 .get(0);
                 StringBuilder stringBuilder = new StringBuilder();
@@ -50,7 +50,7 @@ public class SetToStringConvertor extends SetBaseListener {
                 stringBuilder.append("}");
                 return stringBuilder.toString();
             } else {
-                context = (context + " set").trim();
+                context.add("set");
                 List<FormatInfo> formatInfoList = formatInfo.get(new MapKey(context, "nonEmptySet"));
                 StringBuilder stringBuilder = new StringBuilder();
                 stringBuilder.append("{");
@@ -67,7 +67,7 @@ public class SetToStringConvertor extends SetBaseListener {
                     for (int i = 0; i < childrenIndentation; i++) {
                         stringBuilder.append(' ');
                     }
-                    stringBuilder.append(convertToFormatted(context, element, formatInfo));
+                    stringBuilder.append(convertToFormatted(new ArrayList<>(context), element, formatInfo));
                     for (int i = 0; i < formatInfoList.get(1).appendNewLines; i++) {
                         stringBuilder.append("\n");
                     }

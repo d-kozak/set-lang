@@ -43,7 +43,7 @@ public class Main {
 
         simpleLog.accept("Parsed model is " + listener.getSet());
 
-        FormatMemorizingListener formatMemorizingListener = new FormatMemorizingListener(commonTokenStream, parser);
+        FormatMemorizingListener formatMemorizingListener = new FormatMemorizingListener(parser);
         walker.walk(formatMemorizingListener, ast);
 
         Map<MapKey, List<FormatInfo>> formatInfo = formatMemorizingListener.getFormatInfo();

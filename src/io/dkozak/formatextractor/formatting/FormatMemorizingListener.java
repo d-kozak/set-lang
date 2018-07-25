@@ -24,7 +24,7 @@ public class FormatMemorizingListener extends SetBaseListener {
         Token leftBracketNode = ((TerminalNodeImpl) ctx.children.get(0)).symbol;
         Token rightBracketNode = ((TerminalNodeImpl) ctx.children.get(1)).symbol;
 
-        String context = createRuleContext(ctx);
+        List<String> context = createRuleContext(ctx);
 
         int appendedNewlines = rightBracketNode.getLine() - leftBracketNode.getLine();
 
@@ -49,7 +49,7 @@ public class FormatMemorizingListener extends SetBaseListener {
 
         List<FormatInfo> infos = new ArrayList<>();
 
-        String context = createRuleContext(ctx);
+        List<String> context = createRuleContext(ctx);
 
         // first '{' and elem
         Token currentToken = ctx.start;
@@ -77,11 +77,13 @@ public class FormatMemorizingListener extends SetBaseListener {
         formatInfoMap.put(new MapKey(context, "nonEmptySet"), infos);
     }
 
-    private String createRuleContext(ParserRuleContext ctx) {
-        String context = ctx.toString(Arrays.asList(setParser.getRuleNames()));
-        context = context.substring(1, context.length() - 1)
-                         .replace("compilationUnit", "")
-                         .trim();
+    private List<String> createRuleContext(ParserRuleContext ctx) {
+        String contextAsString = ctx.toString(Arrays.asList(setParser.getRuleNames()));
+        contextAsString = contextAsString.substring(1, contextAsString.length() - 1)
+                                         .replace("compilationUnit", "")
+                                         .trim();
+        List<String> context = Arrays.asList(contextAsString.split(" "));
+        Collections.reverse(context);
         return context;
     }
 
