@@ -2,7 +2,7 @@ package io.dkozak.formatextractor.formatting;
 
 import io.dkozak.formatextractor.SetBaseListener;
 import io.dkozak.formatextractor.SetParser;
-import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNodeImpl;
@@ -13,12 +13,9 @@ public class FormatMemorizingListener extends SetBaseListener {
 
     private final Map<MapKey, List<FormatInfo>> formatInfoMap = new HashMap<>();
 
-    private final CommonTokenStream commonTokenStream;
-
     private final SetParser setParser;
 
-    public FormatMemorizingListener(CommonTokenStream commonTokenStream, SetParser setParser) {
-        this.commonTokenStream = commonTokenStream;
+    public FormatMemorizingListener(SetParser setParser) {
         this.setParser = setParser;
     }
 
@@ -27,14 +24,23 @@ public class FormatMemorizingListener extends SetBaseListener {
         Token leftBracketNode = ((TerminalNodeImpl) ctx.children.get(0)).symbol;
         Token rightBracketNode = ((TerminalNodeImpl) ctx.children.get(1)).symbol;
 
-        String context = ctx.toString(Arrays.asList(setParser.getRuleNames()));
-        context = context.substring(1, context.length() - 1)
-                         .replace("compilationUnit", "")
-                         .trim();
+        String context = createRuleContext(ctx);
 
         int appendedNewlines = rightBracketNode.getLine() - leftBracketNode.getLine();
 
         formatInfoMap.put(new MapKey(context, "emptySet"), Collections.singletonList(new FormatInfo(appendedNewlines, 0)));
+    }
+
+
+    private void saveInfoAboutNextTwoTokens(Token currentToken, Token nextToken, List<FormatInfo> formatInfoList) {
+        int appendNewLines = nextToken.getLine() - currentToken.getLine();
+        int childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
+                                                                                                                          .length());
+        if (appendNewLines > 0) {
+            childrenIndentation += currentToken.getText()
+                                               .length();
+        }
+        formatInfoList.add(new FormatInfo(appendNewLines, childrenIndentation));
     }
 
     @Override
@@ -43,81 +49,40 @@ public class FormatMemorizingListener extends SetBaseListener {
 
         List<FormatInfo> infos = new ArrayList<>();
 
-        String context = ctx.toString(Arrays.asList(setParser.getRuleNames()));
-        context = context.substring(1, context.length() - 1)
-                         .replace("compilationUnit", "")
-                         .trim();
+        String context = createRuleContext(ctx);
 
         // first '{' and elem
         Token currentToken = ctx.start;
         Token nextToken = getLeftmostToken(ctx.children.get(1));
-        int appendNewLines = nextToken.getLine() - currentToken.getLine();
-        int childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
-                                                                                                                          .length());
-        if (appendNewLines > 0) {
-            childrenIndentation += currentToken.getText()
-                                               .length();
-        }
-
-        infos.add(new FormatInfo(appendNewLines, childrenIndentation));
+        saveInfoAboutNextTwoTokens(currentToken, nextToken, infos);
 
         // then elem ','
         currentToken = nextToken;
         nextToken = ((TerminalNodeImpl) ctx.children.get(2)).symbol;
-        appendNewLines = nextToken.getLine() - currentToken.getLine();
-        childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
-                                                                                                                      .length());
-        if (appendNewLines > 0) {
-            childrenIndentation += currentToken.getText()
-                                               .length();
-        }
+        saveInfoAboutNextTwoTokens(currentToken, nextToken, infos);
 
-        infos.add(new FormatInfo(appendNewLines, childrenIndentation));
-
+        // then (',' elem)* , if there are any
         if (ctx.children.size() > 4) {
-            // then ',' elem
+
             currentToken = nextToken;
             nextToken = getLeftmostToken(ctx.children.get(3));
-            appendNewLines = nextToken.getLine() - currentToken.getLine();
-            childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
-                                                                                                                          .length());
-            if (appendNewLines > 0) {
-                childrenIndentation += currentToken.getText()
-                                                   .length();
-            }
-
-            infos.add(new FormatInfo(appendNewLines, childrenIndentation));
+            saveInfoAboutNextTwoTokens(currentToken, nextToken, infos);
         }
 
         // finally elem '}'
         currentToken = getRightmostToken(ctx.children.get(ctx.children.size() - 2));
         nextToken = ((TerminalNodeImpl) ctx.children.get(ctx.children.size() - 1)).symbol;
-        appendNewLines = nextToken.getLine() - currentToken.getLine();
-        childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
-                                                                                                                      .length());
-        if (appendNewLines > 0) {
-            childrenIndentation += currentToken.getText()
-                                               .length();
-        }
-
-        infos.add(new FormatInfo(appendNewLines, childrenIndentation));
+        saveInfoAboutNextTwoTokens(currentToken, nextToken, infos);
 
         formatInfoMap.put(new MapKey(context, "nonEmptySet"), infos);
     }
 
-
-    public Map<MapKey, List<FormatInfo>> getFormatInfo() {
-        return formatInfoMap;
-    }
-
-
-    private Token findNextToken(List<ParseTree> elems) {
-        for (ParseTree elem : elems) {
-            if (elem instanceof TerminalNodeImpl) {
-                return ((TerminalNodeImpl) elem).symbol;
-            }
-        }
-        throw new IllegalArgumentException("No next token found");
+    private String createRuleContext(ParserRuleContext ctx) {
+        String context = ctx.toString(Arrays.asList(setParser.getRuleNames()));
+        context = context.substring(1, context.length() - 1)
+                         .replace("compilationUnit", "")
+                         .trim();
+        return context;
     }
 
     private Token getRightmostToken(ParseTree tree) {
@@ -140,4 +105,7 @@ public class FormatMemorizingListener extends SetBaseListener {
         return ((TerminalNodeImpl) tree).symbol;
     }
 
+    public Map<MapKey, List<FormatInfo>> getFormatInfo() {
+        return formatInfoMap;
+    }
 }
