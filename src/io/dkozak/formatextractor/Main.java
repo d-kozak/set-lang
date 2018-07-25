@@ -51,6 +51,6 @@ public class Main {
 
 
         simpleLog.accept("Input:\n====\n" + input + "====\n");
-        return SetToStringConvertor.convertToFormatted(listener.getSet(), formatInfo);
+        return SetToStringConverter.convert(listener.getSet(), formatInfo);
     }
 }

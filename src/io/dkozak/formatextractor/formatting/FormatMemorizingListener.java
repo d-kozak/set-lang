@@ -36,6 +36,9 @@ public class FormatMemorizingListener extends SetBaseListener {
         int appendNewLines = nextToken.getLine() - currentToken.getLine();
         int childrenIndentation = nextToken.getCharPositionInLine() - (currentToken.getCharPositionInLine() + currentToken.getText()
                                                                                                                           .length());
+        if (childrenIndentation < 0)
+            childrenIndentation = 0;
+
         if (appendNewLines > 0) {
             childrenIndentation += currentToken.getText()
                                                .length();
