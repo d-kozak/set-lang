@@ -2,4 +2,4 @@
 
 A very simple example of antlr4 language application that can parse files containing sets. Example input files can be seen in _./input_ folder.
 
-The future goal is to learn the formating from the input files so that it can be later used to format other files.
+It can learn the formating of the input file and use this formating when printing the output.
