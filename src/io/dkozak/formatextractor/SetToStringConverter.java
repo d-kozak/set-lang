@@ -42,30 +42,31 @@ public class SetToStringConverter extends SetBaseListener {
 
     private static String convertNonEmptySet(List<String> context, int indentation, Map<MapKey, List<FormatInfo>> formatInfo, InnerMySet set) {
         context.add("set");
-        List<FormatInfo> formatInfoList = formatInfo.get(new MapKey(context, "nonEmptySet"));
-        StringBuilder stringBuilder = new StringBuilder();
-        appendChar(' ', stringBuilder, indentation);
-        stringBuilder.append('{');
-        appendChar('\n', stringBuilder, formatInfoList.get(0).appendNewLines);
-        int childrenIndentation = indentation + formatInfoList.get(0).childrenIndentation;
+        List<FormatInfo> formatInfos = formatInfo.get(new MapKey(context, "nonEmptySet"));
+        StringBuilder builder = new StringBuilder();
+        appendChar(' ', builder, indentation);
+        builder.append('{');
+        appendChar('\n', builder, formatInfos.get(0).appendNewLines);
+        int childrenIndentation = indentation + formatInfos.get(0).childrenIndentation;
 
         ArrayList<MySet> setArrayList = new ArrayList<>(set.getElements());
         for (int j = 0; j < setArrayList.size(); j++) {
             MySet element = setArrayList.get(j);
-            stringBuilder.append(convert(new ArrayList<>(context), formatInfoList.get(2).appendNewLines > 0 ? childrenIndentation : formatInfoList.get(0).childrenIndentation, element, formatInfo));
+            int innerElementIndentation = formatInfos.get(2).appendNewLines > 0 ? childrenIndentation : formatInfos.get(0).childrenIndentation;
+            builder.append(convert(new ArrayList<>(context), innerElementIndentation, element, formatInfo));
             boolean isNotLast = j < setArrayList.size() - 1;
-            boolean moreThanTwoElems = setArrayList.size() > 1;
-            if (isNotLast && moreThanTwoElems) {
-                stringBuilder.append(',');
-                appendChar('\n', stringBuilder, formatInfoList.get(2).appendNewLines);
+            boolean setHasMoreThanTwoElems = setArrayList.size() > 1;
+            if (isNotLast && setHasMoreThanTwoElems) {
+                builder.append(',');
+                appendChar('\n', builder, formatInfos.get(2).appendNewLines);
             }
         }
-        appendChar('\n', stringBuilder, formatInfoList.get(formatInfoList.size() - 1).appendNewLines);
-        if (formatInfoList.get(formatInfoList.size() - 1).appendNewLines > 0) {
-            appendChar(' ', stringBuilder, indentation);
+        appendChar('\n', builder, formatInfos.get(formatInfos.size() - 1).appendNewLines);
+        if (formatInfos.get(formatInfos.size() - 1).appendNewLines > 0) {
+            appendChar(' ', builder, indentation);
         }
-        stringBuilder.append('}');
-        return stringBuilder.toString();
+        builder.append('}');
+        return builder.toString();
     }
 
     private static String convertEmptySet(List<String> context, int indentation, Map<MapKey, List<FormatInfo>> formatInfo) {
