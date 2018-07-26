@@ -1,10 +1,10 @@
-package io.dkozak.formatextractor;
+package io.dkozak.setlang;
 
 import org.junit.Test;
 
 import java.util.function.Consumer;
 
-import static io.dkozak.formatextractor.Main.process;
+import static io.dkozak.setlang.Main.process;
 import static junit.framework.TestCase.assertEquals;
 
 public class EndToEnd {

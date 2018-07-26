@@ -1,4 +1,4 @@
-package io.dkozak.formatextractor.model;
+package io.dkozak.setlang.model;
 
 import java.util.Collections;
 import java.util.LinkedHashSet;

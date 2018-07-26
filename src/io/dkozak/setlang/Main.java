@@ -1,8 +1,8 @@
-package io.dkozak.formatextractor;
+package io.dkozak.setlang;
 
-import io.dkozak.formatextractor.formatting.FormatInfo;
-import io.dkozak.formatextractor.formatting.FormatMemorizingListener;
-import io.dkozak.formatextractor.formatting.MapKey;
+import io.dkozak.setlang.formatting.FormatInfo;
+import io.dkozak.setlang.formatting.FormatMemorizingListener;
+import io.dkozak.setlang.formatting.MapKey;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;

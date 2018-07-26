@@ -1,4 +1,4 @@
-package io.dkozak.formatextractor.formatting;
+package io.dkozak.setlang.formatting;
 
 import java.util.List;
 import java.util.Objects;

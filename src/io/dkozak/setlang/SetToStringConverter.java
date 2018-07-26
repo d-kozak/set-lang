@@ -1,10 +1,10 @@
-package io.dkozak.formatextractor;
+package io.dkozak.setlang;
 
-import io.dkozak.formatextractor.formatting.FormatInfo;
-import io.dkozak.formatextractor.formatting.MapKey;
-import io.dkozak.formatextractor.model.InnerMySet;
-import io.dkozak.formatextractor.model.MySet;
-import io.dkozak.formatextractor.model.SetElement;
+import io.dkozak.setlang.formatting.FormatInfo;
+import io.dkozak.setlang.formatting.MapKey;
+import io.dkozak.setlang.model.InnerMySet;
+import io.dkozak.setlang.model.MySet;
+import io.dkozak.setlang.model.SetElement;
 
 import java.util.ArrayList;
 import java.util.List;

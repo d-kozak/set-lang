@@ -1,5 +1,5 @@
-// Generated from /home/dkozak/IdeaProjects/FormatExtractor/src/io/dkozak/formatextractor/Set.g4 by ANTLR 4.7
-package io.dkozak.formatextractor;
+// Generated from /home/dkozak/IdeaProjects/FormatExtractor/src/io/dkozak/setlang/Set.g4 by ANTLR 4.7
+package io.dkozak.setlang;
 
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.ATN;

@@ -1,4 +1,4 @@
-package io.dkozak.formatextractor.model;
+package io.dkozak.setlang.model;
 
 public final class SetElement implements MySet {
     private final String name;

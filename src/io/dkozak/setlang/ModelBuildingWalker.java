@@ -1,7 +1,7 @@
-package io.dkozak.formatextractor;
+package io.dkozak.setlang;
 
-import io.dkozak.formatextractor.model.InnerMySet;
-import io.dkozak.formatextractor.model.SetElement;
+import io.dkozak.setlang.model.InnerMySet;
+import io.dkozak.setlang.model.SetElement;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -1,4 +1,4 @@
-package io.dkozak.formatextractor.formatting;
+package io.dkozak.setlang.formatting;
 
 public final class FormatInfo {
     public final int appendNewLines;

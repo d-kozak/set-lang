@@ -1,7 +1,7 @@
-package io.dkozak.formatextractor.formatting;
+package io.dkozak.setlang.formatting;
 
-import io.dkozak.formatextractor.SetBaseListener;
-import io.dkozak.formatextractor.SetParser;
+import io.dkozak.setlang.SetBaseListener;
+import io.dkozak.setlang.SetParser;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
