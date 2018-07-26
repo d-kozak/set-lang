@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FormatExtractor.iml" filepath="$PROJECT_DIR$/FormatExtractor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SetLang.iml" filepath="$PROJECT_DIR$/SetLang.iml" />
     </modules>
   </component>
 </project>
