@@ -53,4 +53,16 @@ public class EndToEnd {
                 "}";
         assertEquals(input, process(input, dummyLog));
     }
+
+
+    @Test
+    public void differentInnerAndOuterFormatting() {
+        String input = "{\n" +
+                "    a,\n" +
+                "    {1,2,3},\n" +
+                "    c,\n" +
+                "    d\n" +
+                "}";
+        assertEquals(input, process(input, dummyLog));
+    }
 }

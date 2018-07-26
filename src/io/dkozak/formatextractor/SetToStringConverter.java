@@ -52,11 +52,7 @@ public class SetToStringConverter extends SetBaseListener {
         ArrayList<MySet> setArrayList = new ArrayList<>(set.getElements());
         for (int j = 0; j < setArrayList.size(); j++) {
             MySet element = setArrayList.get(j);
-            stringBuilder.append(convert(new ArrayList<>(context), childrenIndentation, element, formatInfo));
-            appendChar('\n', stringBuilder, formatInfoList.get(1).appendNewLines);
-            if (formatInfoList.get(1).appendNewLines > 0) {
-                appendChar(' ', stringBuilder, childrenIndentation);
-            }
+            stringBuilder.append(convert(new ArrayList<>(context), formatInfoList.get(2).appendNewLines > 0 ? childrenIndentation : formatInfoList.get(0).childrenIndentation, element, formatInfo));
             boolean isNotLast = j < setArrayList.size() - 1;
             boolean moreThanTwoElems = setArrayList.size() > 1;
             if (isNotLast && moreThanTwoElems) {
