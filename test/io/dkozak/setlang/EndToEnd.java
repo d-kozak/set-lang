@@ -65,4 +65,44 @@ public class EndToEnd {
                 "}";
         assertEquals(input, process(input, dummyLog));
     }
+
+    @Test
+    public void depthThree() {
+        String input = "{\n" +
+                "    a,\n" +
+                "    b,\n" +
+                "    c,\n" +
+                "    {\n" +
+                "        1,\n" +
+                "        2,\n" +
+                "        3,\n" +
+                "        {\n" +
+                "            x,\n" +
+                "            y,\n" +
+                "            z\n" +
+                "        }\n" +
+                "    }\n" +
+                "}";
+        assertEquals(input, process(input, dummyLog));
+    }
+
+    @Test
+    public void depthFourWithDifferentInnerMostFormatting() {
+        String input = "{\n" +
+                "    a,\n" +
+                "    b,\n" +
+                "    c,\n" +
+                "    {\n" +
+                "        1,\n" +
+                "        2,\n" +
+                "        3,\n" +
+                "        {\n" +
+                "            x,\n" +
+                "            {aa,ab,ba},\n" +
+                "            z\n" +
+                "        }\n" +
+                "    }\n" +
+                "}";
+        assertEquals(input, process(input, dummyLog));
+    }
 }
